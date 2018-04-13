@@ -1,3 +1,4 @@
 .env.local
 Gemfile.lock
 coverage
+pkg
