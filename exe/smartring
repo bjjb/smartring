@@ -1,0 +1,7 @@
+require 'smartring'
+require 'optparse'
+
+OptionParser.new do |opt|
+end.parse!(ARGV)
+
+# vi: ft=ruby

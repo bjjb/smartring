@@ -1,0 +1,129 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.smartling.com/auth-api/v2/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"userIdentifier":"SMARTLING_USER_ID","userSecret":"SMARTLING_USER_SECRET"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 13 Apr 2018 15:17:36 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - api-gateway:aws,redis:8443
+      - authentication:aws:8443
+      X-Frame-Options:
+      - DENY
+      X-Sl-Requestid:
+      - 063a4b76-b96c-499e-b82b-136e0c179970
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"response":{"code":"SUCCESS","data":{"accessToken":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI0NmIzZTY4My1iZmJiLTQzNjYtOTI2NC0wZjlkYmIzYTE0MTIiLCJleHAiOjE1MjM2MzMxMzcsIm5iZiI6MCwiaWF0IjoxNTIzNjMyNjU3LCJpc3MiOiJodHRwczovL3Nzby5zbWFydGxpbmcuY29tL2F1dGgvcmVhbG1zL1NtYXJ0bGluZyIsImF1ZCI6ImF1dGhlbnRpY2F0aW9uLXNlcnZpY2UiLCJzdWIiOiIwYWFjMGNmZC04ZTY3LTRjYTMtOWQzOC0zM2UyMThiZmZmODciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhdXRoZW50aWNhdGlvbi1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjY2NWJmODQyLTllOWUtNDZmMS1hZmRhLWU1NzhkM2Q4Njk4ZiIsImNsaWVudF9zZXNzaW9uIjoiMWRhMTA2MWUtOGJmNy00ZjgyLWJjNGItMDFmZTk2MzI5ODg4IiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfQVBJX1VTRVIiLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX0sInVpZCI6Ijc1MTU0OGNjNzM0MCIsIm5hbWUiOiJDbGlzdGUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhcGk6aHpscGZqcG5jc2l6eXBnaHplenp6bGNxcWhrdndxIiwiZ2l2ZW5fbmFtZSI6IkFQSSBVc2VyIiwiZmFtaWx5X25hbWUiOiJDbGlzdGUiLCJlbWFpbCI6ImFwaVVzZXIrcHJvamVjdCsyZTQxNDRlMjJAc21hcnRsaW5nLmNvbSJ9.OXSZdM4WCcsyL6s68uVEobK3TmjA0TMMng1B1l1ANX3aQsaBDjzwHAxNU0ivtlcgjEacFSbgxHALT7sB-mIrE65YggnrRM1yImyDdZUM64t9k9raxTZwO2Sql0ul3ACNJ9NMjxwU2J_HBOHf4TFShq1wWIivilerqePn8VojrBs","refreshToken":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwZTM4NzEwOS02NWVhLTRhZDYtOWFhYS03MDU5ZThiY2M2NWQiLCJleHAiOjE1MjM2NTQyNTcsIm5iZiI6MCwiaWF0IjoxNTIzNjMyNjU3LCJpc3MiOiJodHRwczovL3Nzby5zbWFydGxpbmcuY29tL2F1dGgvcmVhbG1zL1NtYXJ0bGluZyIsInN1YiI6IjBhYWMwY2ZkLThlNjctNGNhMy05ZDM4LTMzZTIxOGJmZmY4NyIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJhdXRoZW50aWNhdGlvbi1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjY2NWJmODQyLTllOWUtNDZmMS1hZmRhLWU1NzhkM2Q4Njk4ZiIsImNsaWVudF9zZXNzaW9uIjoiMWRhMTA2MWUtOGJmNy00ZjgyLWJjNGItMDFmZTk2MzI5ODg4IiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfQVBJX1VTRVIiLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX19.X-xGw8too8M5dvqAAtHV60EHJC2aRmR97CQq2af3iU9bu_GjuNeXgeNkf5gc2t7NZ9RHt7jJNkBTqo6f9TNMyBD3CVnfDDICJujgmaqKVacO4Uh45IEjh0lEpZY_4L1TlqK-rws44g8SVlUAdIZYvCnVbRIBiF18makYD5Xy3ko","expiresIn":480,"refreshExpiresIn":21600,"tokenType":"Bearer"}}}'
+    http_version: 
+  recorded_at: Fri, 13 Apr 2018 15:17:37 GMT
+- request:
+    method: post
+    uri: https://api.smartling.com/auth-api/v2/authenticate/refresh
+    body:
+      encoding: UTF-8
+      string: '{"refreshToken":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwZTM4NzEwOS02NWVhLTRhZDYtOWFhYS03MDU5ZThiY2M2NWQiLCJleHAiOjE1MjM2NTQyNTcsIm5iZiI6MCwiaWF0IjoxNTIzNjMyNjU3LCJpc3MiOiJodHRwczovL3Nzby5zbWFydGxpbmcuY29tL2F1dGgvcmVhbG1zL1NtYXJ0bGluZyIsInN1YiI6IjBhYWMwY2ZkLThlNjctNGNhMy05ZDM4LTMzZTIxOGJmZmY4NyIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJhdXRoZW50aWNhdGlvbi1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjY2NWJmODQyLTllOWUtNDZmMS1hZmRhLWU1NzhkM2Q4Njk4ZiIsImNsaWVudF9zZXNzaW9uIjoiMWRhMTA2MWUtOGJmNy00ZjgyLWJjNGItMDFmZTk2MzI5ODg4IiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfQVBJX1VTRVIiLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX19.X-xGw8too8M5dvqAAtHV60EHJC2aRmR97CQq2af3iU9bu_GjuNeXgeNkf5gc2t7NZ9RHt7jJNkBTqo6f9TNMyBD3CVnfDDICJujgmaqKVacO4Uh45IEjh0lEpZY_4L1TlqK-rws44g8SVlUAdIZYvCnVbRIBiF18makYD5Xy3ko"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 13 Apr 2018 15:17:37 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - api-gateway:aws,redis:8443
+      - authentication:aws:8443
+      X-Frame-Options:
+      - DENY
+      X-Sl-Requestid:
+      - bd28fc39-a567-426b-95be-1280174cfb1b
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"response":{"code":"SUCCESS","data":{"accessToken":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwZWM1OWYyYy1lMTg1LTQ5NDItYTA3YS1mNzFiYTQ0YTUzMDQiLCJleHAiOjE1MjM2MzMxMzcsIm5iZiI6MCwiaWF0IjoxNTIzNjMyNjU3LCJpc3MiOiJodHRwczovL3Nzby5zbWFydGxpbmcuY29tL2F1dGgvcmVhbG1zL1NtYXJ0bGluZyIsImF1ZCI6ImF1dGhlbnRpY2F0aW9uLXNlcnZpY2UiLCJzdWIiOiIwYWFjMGNmZC04ZTY3LTRjYTMtOWQzOC0zM2UyMThiZmZmODciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhdXRoZW50aWNhdGlvbi1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjY2NWJmODQyLTllOWUtNDZmMS1hZmRhLWU1NzhkM2Q4Njk4ZiIsImNsaWVudF9zZXNzaW9uIjoiMWRhMTA2MWUtOGJmNy00ZjgyLWJjNGItMDFmZTk2MzI5ODg4IiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfQVBJX1VTRVIiLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX0sInVpZCI6Ijc1MTU0OGNjNzM0MCIsIm5hbWUiOiJDbGlzdGUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhcGk6aHpscGZqcG5jc2l6eXBnaHplenp6bGNxcWhrdndxIiwiZ2l2ZW5fbmFtZSI6IkFQSSBVc2VyIiwiZmFtaWx5X25hbWUiOiJDbGlzdGUiLCJlbWFpbCI6ImFwaVVzZXIrcHJvamVjdCsyZTQxNDRlMjJAc21hcnRsaW5nLmNvbSJ9.ZqLRy3owb8vvbhiI34TQ3LO61HeU-ASjT2aoh_ypUAE_i5Y785azBh1rWihMRVcqESrIdTdwW5Yj_D3hK8KPnPwOnuStSS2HLPhNXR7wqScUoe1Q3csZNBdylJRx4SXWoDM-C6t3skmn-zqzauUGTwi5WO8RK2y6ZMrNx52-2w4","refreshToken":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI5NTdlMWNhOS0wMzQ1LTQ5MDYtODFkNi1hNWVhNjA1ZmE1NzIiLCJleHAiOjE1MjM2NTQyNTcsIm5iZiI6MCwiaWF0IjoxNTIzNjMyNjU3LCJpc3MiOiJodHRwczovL3Nzby5zbWFydGxpbmcuY29tL2F1dGgvcmVhbG1zL1NtYXJ0bGluZyIsInN1YiI6IjBhYWMwY2ZkLThlNjctNGNhMy05ZDM4LTMzZTIxOGJmZmY4NyIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJhdXRoZW50aWNhdGlvbi1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6IjY2NWJmODQyLTllOWUtNDZmMS1hZmRhLWU1NzhkM2Q4Njk4ZiIsImNsaWVudF9zZXNzaW9uIjoiMWRhMTA2MWUtOGJmNy00ZjgyLWJjNGItMDFmZTk2MzI5ODg4IiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfQVBJX1VTRVIiLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX19.fi3kkzq_Ozu9VB1bROKtXb6hc22XpZ477T5y1JERfHm3rFMzNl8pv-F5hyMC4PYGeJbewvq5QZsEvlIrmB8SHj69ucXC0NzJYfYpnOx-zwA-JwRcev4QQllL3JY7nHDvoLvqgiEa5WNnXJMte9FiYAUVZLTzJcBUPE9_X__V_Nw","expiresIn":480,"refreshExpiresIn":21600,"tokenType":"Bearer"}}}'
+    http_version: 
+  recorded_at: Fri, 13 Apr 2018 15:17:37 GMT
+- request:
+    method: post
+    uri: https://api.smartling.com/auth-api/v2/authenticate
+    body:
+      encoding: UTF-8
+      string: '{"userIdentifier":"SMARTLING_USER_ID","userSecret":"SMARTLING_USER_SECRET"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 13 Apr 2018 15:17:37 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - api-gateway:aws,redis:8443
+      - authentication:aws:8443
+      X-Frame-Options:
+      - DENY
+      X-Sl-Requestid:
+      - 5fa44659-bde2-4cd4-b636-d54f6a4fddfa
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"response":{"code":"SUCCESS","data":{"accessToken":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI0ODAzYjM5Yy1hMWQ2LTQ0MWMtOGIyZi0zNjZmODgxZWE0NTQiLCJleHAiOjE1MjM2MzMxMzUsIm5iZiI6MCwiaWF0IjoxNTIzNjMyNjU1LCJpc3MiOiJodHRwczovL3Nzby5zbWFydGxpbmcuY29tL2F1dGgvcmVhbG1zL1NtYXJ0bGluZyIsImF1ZCI6ImF1dGhlbnRpY2F0aW9uLXNlcnZpY2UiLCJzdWIiOiIwYWFjMGNmZC04ZTY3LTRjYTMtOWQzOC0zM2UyMThiZmZmODciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhdXRoZW50aWNhdGlvbi1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6ImFmYjA2M2Y1LWNjNmYtNDVmZi1iNGI3LTRjY2E4NTE1ZTA3ZiIsImNsaWVudF9zZXNzaW9uIjoiZGUzZjBhOGQtOWVlNS00MzA0LTlmNDMtNjc1MWIzMjI0YzVkIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfQVBJX1VTRVIiLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX0sInVpZCI6Ijc1MTU0OGNjNzM0MCIsIm5hbWUiOiJDbGlzdGUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhcGk6aHpscGZqcG5jc2l6eXBnaHplenp6bGNxcWhrdndxIiwiZ2l2ZW5fbmFtZSI6IkFQSSBVc2VyIiwiZmFtaWx5X25hbWUiOiJDbGlzdGUiLCJlbWFpbCI6ImFwaVVzZXIrcHJvamVjdCsyZTQxNDRlMjJAc21hcnRsaW5nLmNvbSJ9.XCa7CNiaCvX5SAevfPAPpoPO5qGGRresS_AW2rhQqCFpMTmW2ka6mg9ihf6DvVf9Ik24__gQHd7pFJ5qCci0E6wWiZ97Ir0SoAmz3_sH_Zs13U8j5b3_wEst54Ora_0wwk0Pfhk__nq4Z0uxR_CwC2Iw3S6PurYkIS9SC_TowvE","refreshToken":"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJiMWZlOTc5YS05MjRkLTQxOTUtOTg3MS1jMGJkNTM4NThkMmQiLCJleHAiOjE1MjM2NTQyNTUsIm5iZiI6MCwiaWF0IjoxNTIzNjMyNjU1LCJpc3MiOiJodHRwczovL3Nzby5zbWFydGxpbmcuY29tL2F1dGgvcmVhbG1zL1NtYXJ0bGluZyIsInN1YiI6IjBhYWMwY2ZkLThlNjctNGNhMy05ZDM4LTMzZTIxOGJmZmY4NyIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJhdXRoZW50aWNhdGlvbi1zZXJ2aWNlIiwic2Vzc2lvbl9zdGF0ZSI6ImFmYjA2M2Y1LWNjNmYtNDVmZi1iNGI3LTRjY2E4NTE1ZTA3ZiIsImNsaWVudF9zZXNzaW9uIjoiZGUzZjBhOGQtOWVlNS00MzA0LTlmNDMtNjc1MWIzMjI0YzVkIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIlJPTEVfQVBJX1VTRVIiLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX19.J_bJ27o_dThDeScK13UMiByFN7y0I4BjqkKNZYce6VWbrcpvAukNxgHe0y1LKETmEwDVApsg4xCiql97Nfktcs9Jh9WrdwLncpdiXbTnO1a8pYqM5pKPUgt1ySN0zMVw4bdtqm_e5EAYSRL4j33GtqW5RV1-nwyL8e4IqAHpt4E","expiresIn":480,"refreshExpiresIn":21600,"tokenType":"Bearer"}}}'
+    http_version: 
+  recorded_at: Fri, 13 Apr 2018 15:17:38 GMT
+recorded_with: VCR 4.0.0
