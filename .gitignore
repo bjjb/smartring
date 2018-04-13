@@ -1,3 +1,5 @@
 .env.local
 coverage
 pkg
+Gemfile.lock
+.bundle
