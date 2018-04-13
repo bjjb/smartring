@@ -28,9 +28,9 @@ api.files(project_id: PROJECT_ID).each do |file|
   puts file.file_uri
 end
 
-# Gets all Korean
-api.strings(file_uri: api.files.first.file_uri).each do |file|
-  
+# Gets all Korean translations for the first file
+file_uri = api.files.data.items.first.file_uri
+api.translations(file_uri: file_uri, target_locale_id: 'ko')
 ```
 
 
