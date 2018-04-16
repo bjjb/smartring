@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -20,11 +21,10 @@ DESC
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
-  spec.required_ruby_version = '>= 2.0'
   spec.add_dependency 'dotenv', '~> 2.2'
   spec.add_dependency 'hipsterhash', '~> 0.0.4'
-  spec.add_dependency 'httparty', '~> 0.16.2'
   spec.add_dependency 'httmultiparty', '~> 0.3.16'
+  spec.add_dependency 'httparty', '~> 0.16.2'
   spec.add_dependency 'nokogiri', '~> 1.8'
   spec.add_dependency 'rake', '~> 12.3'
   spec.add_development_dependency 'bundler', '~> 1.16'

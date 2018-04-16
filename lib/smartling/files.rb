@@ -25,8 +25,8 @@ module Smartling
     end
 
     def upload_file(project_id: @project_id, file:, file_uri:, file_type:,
-                    file_name: nil, callback: nil, authorize: nil,
-                    locales_to_authorize: nil, smartling: {})
+                    callback: nil, authorize: nil, locales_to_authorize: nil,
+                    smartling: {})
       raise(InvalidFile, file) unless Files.valid_file?(file)
       path = "/files-api/v2/projects/#{project_id}/file"
       body = { file: file, fileUri: file_uri, fileType: file_type }
@@ -38,8 +38,6 @@ module Smartling
       smartling.each { |k, v| body["smartling.#{k}"] = v }
       post(path, body: body)
     end
-
-    private
 
     InvalidFile = Class.new(ArgumentError)
 

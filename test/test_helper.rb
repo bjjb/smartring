@@ -15,9 +15,9 @@ require 'cgi'
 VCR.configure do |vcr|
   vcr.hook_into :webmock
   vcr.cassette_library_dir = 'test/cassettes'
-  vcr.filter_sensitive_data("SMARTLING_PROJECT_ID") { ENV.fetch('SMARTLING_PROJECT_ID') }
-  vcr.filter_sensitive_data("SMARTLING_USER_ID") { ENV.fetch('SMARTLING_USER_ID') }
-  vcr.filter_sensitive_data("SMARTLING_USER_SECRET") { ENV.fetch('SMARTLING_USER_SECRET') }
+  vcr.filter_sensitive_data('SMARTLING_PROJECT_ID') { ENV.fetch('SMARTLING_PROJECT_ID') }
+  vcr.filter_sensitive_data('SMARTLING_USER_ID') { ENV.fetch('SMARTLING_USER_ID') }
+  vcr.filter_sensitive_data('SMARTLING_USER_SECRET') { ENV.fetch('SMARTLING_USER_SECRET') }
 end
 
 require 'minitest-vcr'
