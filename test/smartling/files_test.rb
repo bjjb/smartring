@@ -19,18 +19,87 @@ describe Smartling::Files do
     end
   end
 
-  describe 'file' do
+  describe 'file_types' do
+    it 'lists file types' do
+      smartling.expect(:get, nil) do |path|
+        assert_match %r{files-api/v2/projects/1/file-types$}, path
+      end
+      smartling.file_types(project_id: 1)
+    end
+  end
+
+  describe 'file_status' do
     it 'gets the /file/status endpoint with the right param' do
       smartling.expect(:get, nil) do |path, query:|
         assert_match %r{files-api/v2/projects/1/file/status$}, path
         assert_equal({ fileUri: 'x' }, query)
       end
-      smartling.file(project_id: 1, file_uri: 'x')
+      smartling.file_status(project_id: 1, file_uri: 'x')
+    end
+  end
+
+  describe 'download_file with no locale' do
+    it 'gets /file with the right param' do
+      smartling.expect(:get, nil) do |path, query:|
+        assert_match %r{files-api/v2/projects/1/file$}, path
+        assert_equal({ fileUri: 'x' }, query)
+      end
+      smartling.download_file(project_id: 1, file_uri: 'x')
+    end
+  end
+
+  describe 'download_original_file' do
+    it 'gets /file with the right param' do
+      smartling.expect(:get, nil) do |path, query:|
+        assert_match %r{files-api/v2/projects/1/file$}, path
+        assert_equal({ fileUri: 'x' }, query)
+      end
+      smartling.download_original_file(project_id: 1, file_uri: 'x')
+    end
+  end
+
+  describe 'download_file with a locale' do
+    it 'gets /locales/<locale>/file with the right param' do
+      smartling.expect(:get, nil) do |path, query:|
+        assert_match %r{files-api/v2/projects/1/locales/es/file$}, path
+        assert_equal({ fileUri: 'x' }, query)
+      end
+      smartling.download_file(project_id: 1, file_uri: 'x', locale: 'es')
+    end
+  end
+
+  describe 'download_translated_file' do
+    it 'gets /locales/x/file with the right param' do
+      smartling.expect(:get, nil) do |path, query:|
+        assert_match %r{files-api/v2/projects/1/locales/es/file$}, path
+        assert_equal({ fileUri: 'x' }, query)
+      end
+      smartling.download_translated_file(project_id: 1, file_uri: 'x', locale: 'es')
+    end
+  end
+
+  describe 'file_last_modified (without locale)' do
+    it 'gets /file/last-modified with the right param' do
+      smartling.expect(:get, nil) do |path, query:|
+        assert_match %r{files-api/v2/projects/1/file/last-modified$}, path
+        assert_equal({ fileUri: 'x' }, query)
+      end
+      smartling.file_last_modified(project_id: 1, file_uri: 'x')
+    end
+  end
+
+  describe 'file_last_modified (with locale)' do
+    it 'gets /locales/x/file/last-modified with the right param' do
+      smartling.expect(:get, nil) do |path, query:|
+        assert_match %r{files-api/v2/projects/1/locales/es/file/last-modified$}, path
+        assert_equal({ fileUri: 'x' }, query)
+      end
+      smartling.file_last_modified(project_id: 1, file_uri: 'x', locale: 'es')
     end
   end
 
   describe 'file with locale' do
-    it 'gets the /locale/x/file/status endpoint with the right params' do
+    it 'gets the /locales/x/file/status endpoint with the right params' do
       smartling.expect(:get, nil) do |path, query:|
         assert_match %r{files-api/v2/projects/1/locales/es/file/status$}, path
         assert_equal({ fileUri: 'x' }, query)
@@ -83,6 +152,36 @@ describe Smartling::Files do
         smartling.upload_file(project_id: 1, file: 'hi', file_uri: 'x',
                               file_type: 'bullshit')
       end
+    end
+  end
+
+  describe 'import_translations' do
+    it 'posts the right body to the right endpoint' do
+      smartling.expect(:post, nil) do |path, body:|
+        assert_equal '/files-api/v2/projects/1/locales/es/file/import', path
+        assert_equal 'x', body.fetch(:fileUri)
+        assert_equal 'json', body.fetch(:fileType)
+        assert_equal '"hello"', body.fetch(:file).read
+        assert_equal 'application/json', body.fetch(:file).content_type
+      end
+      file = UploadIO.new(StringIO.new('"hello"'), 'application/json')
+      smartling.import_translations(project_id: 1, file: file, file_uri: 'x',
+                                    file_type: 'json', locale: 'es')
+    end
+  end
+
+  describe 'translate_file' do
+    it 'posts the right body to the right endpoint' do
+      smartling.expect(:post, nil) do |path, body:|
+        assert_equal '/files-api/v2/projects/1/locales/es/file/get-translations', path
+        assert_equal 'x', body.fetch(:fileUri)
+        assert_equal 'json', body.fetch(:fileType)
+        assert_equal '"hello"', body.fetch(:file).read
+        assert_equal 'application/json', body.fetch(:file).content_type
+      end
+      file = UploadIO.new(StringIO.new('"hello"'), 'application/json')
+      smartling.translate_file(project_id: 1, file: file, file_uri: 'x',
+                               file_type: 'json', locale: 'es')
     end
   end
 end
