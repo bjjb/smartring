@@ -49,6 +49,16 @@ describe Smartling::Files do
     end
   end
 
+  describe 'rename_file' do
+    it 'posts the right body to the right endpoint' do
+      smartling.expect(:post, nil) do |path, body:|
+        assert_match %r{files-api/v2/projects/1/file/rename$}, path,
+                     assert_equal({ fileUri: 'x', newFileUri: 'y' }, body)
+      end
+      smartling.rename_file(project_id: 1, file_uri: 'x', new_file_uri: 'y')
+    end
+  end
+
   describe 'upload_file' do
     it 'posts the right body to the right endpoint' do
       smartling.expect(:post, nil) do |path, body:|
