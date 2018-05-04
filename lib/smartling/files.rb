@@ -24,6 +24,11 @@ module Smartling
       post(path, body: { fileUri: file_uri })
     end
 
+    def rename_file(project_id: @project_id, file_uri:, new_file_uri:)
+      path = "/files-api/v2/projects/#{project_id}/file/rename"
+      post(path, body: { fileUri: file_uri, newFileUri: new_file_uri })
+    end
+
     def upload_file(project_id: @project_id, file:, file_uri:, file_type:,
                     callback: nil, authorize: nil, locales_to_authorize: nil,
                     smartling: {})
