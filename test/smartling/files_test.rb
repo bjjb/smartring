@@ -14,8 +14,22 @@ describe Smartling::Files do
 
   describe 'files' do
     it 'lists files the items of the smartling files result' do
-      smartling.expect(:get, nil, ['/files-api/v2/projects/1/files/list'])
-      smartling.files(project_id: 1)
+      before = Time.parse('2001-01-01')
+      after = Time.parse('2000-01-01')
+      smartling.expect(:get, nil) do |path, query:|
+        assert_equal '/files-api/v2/projects/1/files/list', path
+        assert_equal before, Time.parse(query[:lastUploadedBefore])
+        assert_equal after, Time.parse(query[:lastUploadedAfter])
+        assert_equal 100, query[:limit]
+        assert_equal 10, query[:offset]
+        assert_equal 'created', query[:orderBy]
+        assert_equal %w(html json), query[:fileTypes]
+        assert_equal '.foo', query[:uriMask]
+      end
+      smartling.files(project_id: 1, last_uploaded_before: before,
+                      last_uploaded_after: after, limit: 100, offset: 10,
+                      order_by: 'created', file_types: %w(html json),
+                      uri_mask: '.foo')
     end
   end
 

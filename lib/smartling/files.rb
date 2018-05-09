@@ -6,9 +6,26 @@ require 'net/http/post/multipart'
 module Smartling
   # Methods for using the Smartling files API
   module Files
-    def files(project_id: @project_id)
+    def files(project_id: @project_id, uri_mask: nil,
+              last_uploaded_after: nil, last_uploaded_before: nil,
+              order_by: nil, file_types: nil, limit: nil, offset: nil)
       path = "/files-api/v2/projects/#{project_id}/files/list"
-      get(path)
+      query = {}
+      unless last_uploaded_before.nil?
+        last_uploaded_before = Time.parse(last_uploaded_before.to_s).utc.iso8601
+        query[:lastUploadedBefore] = last_uploaded_before
+      end
+      unless last_uploaded_after.nil?
+        last_uploaded_after = Time.parse(last_uploaded_after.to_s).utc.iso8601
+        query[:lastUploadedAfter] = last_uploaded_after
+      end
+      query[:fileTypes] = file_types unless file_types.nil?
+      query[:uriMask] = uri_mask unless uri_mask.nil?
+      query[:orderBy] = order_by unless order_by.nil?
+      query[:limit] = limit unless limit.nil?
+      query[:offset] = offset unless offset.nil?
+      return get(path) if query.empty?
+      get(path, query: query)
     end
 
     def file_types(project_id: @project_id)
