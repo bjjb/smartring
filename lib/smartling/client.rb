@@ -5,6 +5,7 @@ require 'smartling/auth'
 require 'smartling/files'
 require 'smartling/contexts'
 require 'smartling/strings'
+require 'smartling/jobs'
 require 'smartling/verbs'
 require 'hipsterhash'
 require 'forwardable'
@@ -16,6 +17,7 @@ module Smartling
     include Auth
     include Files
     include Strings
+    include Jobs
     include Contexts
     include Verbs
 

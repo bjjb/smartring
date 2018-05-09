@@ -10,6 +10,7 @@ describe Smartling::Client, :vcr do
   it('knows context') { assert client.is_a?(Smartling::Contexts) }
   it('knows about files') { assert client.is_a?(Smartling::Files) }
   it('knows about strings') { assert client.is_a?(Smartling::Strings) }
+  it('knows about jobs') { assert client.is_a?(Smartling::Jobs) }
   it('knows how to authenticate') { assert client.is_a?(Smartling::Auth) }
 
   it 'can be created with options' do
