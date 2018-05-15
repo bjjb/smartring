@@ -33,8 +33,9 @@ module Smartling
       body[:referenceNumber] = reference_number unless reference_number.nil?
       body[:callbackUrl] = callback_url unless callback_url.nil?
       body[:callbackMethod] = callback_method unless callback_method.nil?
-      return post(path) if body.empty?
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      return post(path, headers: headers) if body.empty?
+      post(path, body: body.to_json, headers: headers)
     end
 
     def job(project_id: @project_id, translation_job_uid:)
@@ -54,8 +55,9 @@ module Smartling
       body[:referenceNumber] = reference_number unless reference_number.nil?
       body[:callbackUrl] = callback_url unless callback_url.nil?
       body[:callbackMethod] = callback_method unless callback_method.nil?
-      return put(path) if body.empty?
-      put(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      return put(path, headers: headers) if body.empty?
+      put(path, body: body.to_json, headers: headers)
     end
 
     def search_jobs(project_id: @project_id, translation_job_uids: nil,
@@ -67,8 +69,9 @@ module Smartling
       end
       body[:hashcodes] = hashcodes unless hashcodes.nil?
       body[:fileUris] = file_uris unless file_uris.nil?
-      return post(path) if body.empty?
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      return post(path, headers: headers) if body.empty?
+      post(path, body: body.to_json, headers: headers)
     end
 
     def job_files(project_id: @project_id, translation_job_uid:, offset: nil,
@@ -101,14 +104,16 @@ module Smartling
       body = {}
       body[:fileUri] = file_uri
       body[:targetLocaleIds] = target_locale_ids unless target_locale_ids.nil?
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      post(path, body: body.to_json, headers: headers)
     end
 
     def remove_file_from_job(project_id: @project_id, translation_job_uid:, file_uri:)
       path = "/jobs-api/v3/projects/#{project_id}/jobs/#{translation_job_uid}"
       path =  path + '/file/remove'
       body = { fileUri: file_uri }
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      post(path, body: body.to_json, headers: headers)
     end
 
     def add_strings_to_job(project_id: @project_id, translation_job_uid:,
@@ -120,7 +125,8 @@ module Smartling
       body[:hashcodes] = hashcodes
       body[:targetLocaleIds] = target_locale_ids unless target_locale_ids.nil?
       body[:moveEnabled] = move_enabled unless move_enabled.nil?
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      post(path, body: body.to_json, headers: headers)
     end
 
     def remove_strings_from_job(project_id: @project_id, translation_job_uid:,
@@ -130,7 +136,9 @@ module Smartling
       body = {}
       body[:hashcodes] = hashcodes
       body[:localeIds] = locale_ids unless locale_ids.nil?
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      return post(path, headers: headers) if body.empty?
+      post(path, body: body.to_json, headers: headers)
     end
 
     def add_locale_to_job(project_id: @project_id, translation_job_uid:,
@@ -139,8 +147,9 @@ module Smartling
       path = path + "/locales/#{locale_id}"
       body = {}
       body[:syncContent] = sync_content unless sync_content.nil?
-      return post(path) if body.nil?
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      return post(path, headers: headers) if body.nil?
+      post(path, body: body.to_json, headers: headers)
     end
 
     def remove_locale_from_job(project_id: @project_id, translation_job_uid:,
@@ -153,7 +162,8 @@ module Smartling
     def close_job(project_id: @project_id, translation_job_uid:)
       path = "/jobs-api/v3/projects/#{project_id}/jobs/#{translation_job_uid}"
       path = path + '/close'
-      post(path)
+      headers = { 'Content-Type' => 'application/json' }
+      post(path, headers: headers)
     end
 
     def cancel_job(project_id: @project_id, translation_job_uid:, reason: nil)
@@ -161,17 +171,19 @@ module Smartling
       path = path + '/cancel'
       body = {}
       body[:reason] = reason unless reason.nil?
-      return post(path) if body.nil?
-      post(path, body: body)
+      headers = { 'Content-Type' => 'application/json' }
+      return post(path, headers: headers) if body.nil?
+      post(path, body: body.to_json, headers: headers)
     end
 
     def authorize_job(project_id: @project_id, translation_job_uid:,
                       locale_workflows: nil)
       path = "/jobs-api/v3/projects/#{project_id}/jobs/#{translation_job_uid}"
       path = path + '/authorize'
+      headers = { 'Content-Type' => 'application/json' }
       case locale_workflows
       when nil
-        return post(path)
+        return post(path, headers: headers)
       when Array
         body = {}
         body[:localeWorkflows] = locale_workflows.map do |lw|
@@ -179,7 +191,7 @@ module Smartling
           workflow = lw[:workflow_uid] || lw.fetch('workflow_uid')
           { targetLocaleId: locale, workflowUid: workflow }
         end
-        post(path, body: body)
+        post(path, body: body.to_json, headers: headers)
       else
         raise ArgumentError, 'locale_workflows should be an array'
       end

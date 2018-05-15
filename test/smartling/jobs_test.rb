@@ -36,15 +36,18 @@ describe Smartling::Jobs do
 
   describe 'create_job' do
     it 'POSTs the right path and body' do
-      smartling.expect(:post, nil) do |path|
+      smartling.expect(:post, nil) do |path, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs}, path
+        assert_equal 'application/json', headers['Content-Type']
       end
       smartling.create_job(project_id: 1)
     end
 
     it 'builds the correct body' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal 'foo', body[:jobName]
         assert_equal Time.parse('2000-01-01').iso8601, body[:dueDate]
         assert_equal %w(de), body[:targetLocaleIds]
@@ -70,8 +73,10 @@ describe Smartling::Jobs do
 
   describe 'update_job' do
     it 'PUTs the right data to the right endpoint' do
-      smartling.expect(:put, nil) do |path, body:|
+      smartling.expect(:put, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal 'D', body[:description]
         assert_equal Time.parse('2001-01-01').iso8601, body[:dueDate]
         assert_equal '123', body[:referenceNumber]
@@ -88,8 +93,10 @@ describe Smartling::Jobs do
 
   describe 'search_jobs' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/search}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal %w(a b), body[:hashcodes]
         assert_equal %w(x y), body[:fileUris]
         assert_equal %w(1 2), body[:translationJobUids]
@@ -134,8 +141,10 @@ describe Smartling::Jobs do
 
   describe 'add_strings_to_job' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/strings/add}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal true, body[:moveEnabled]
         assert_equal %w(x y), body[:hashcodes]
         assert_equal %w(de), body[:targetLocaleIds]
@@ -148,8 +157,10 @@ describe Smartling::Jobs do
 
   describe 'remove_strings_from_job' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/strings/remove}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal %w(x y), body[:hashcodes]
         assert_equal %w(de), body[:localeIds]
       end
@@ -162,8 +173,10 @@ describe Smartling::Jobs do
 
   describe 'add_file_to_job' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/file/add}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal 'z', body[:fileUri]
         assert_equal %w(de), body[:targetLocaleIds]
       end
@@ -174,8 +187,10 @@ describe Smartling::Jobs do
 
   describe 'remove_file_from_job' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/file/remove}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal 'z', body[:fileUri]
       end
       smartling.remove_file_from_job(project_id: 1, translation_job_uid: 'x',
@@ -185,8 +200,10 @@ describe Smartling::Jobs do
 
   describe 'add_locale_to_job' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/locales/de-AT}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal true, body[:syncContent]
       end
       smartling.add_locale_to_job(project_id: 1, translation_job_uid: 'x',
@@ -207,7 +224,7 @@ describe Smartling::Jobs do
 
   describe 'close_job' do
     it 'POSTs to the right endpoint' do
-      smartling.expect(:post, nil) do |path|
+      smartling.expect(:post, nil) do |path, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/close}, path
       end
       smartling.close_job(project_id: 1, translation_job_uid: 'x')
@@ -216,8 +233,10 @@ describe Smartling::Jobs do
 
   describe 'cancel_job' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/cancel}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         assert_equal 'Laziness', body[:reason]
       end
       smartling.cancel_job(project_id: 1, translation_job_uid: 'x',
@@ -227,8 +246,10 @@ describe Smartling::Jobs do
 
   describe 'authorize_job' do
     it 'POSTs the right body to the right endpoint' do
-      smartling.expect(:post, nil) do |path, body:|
+      smartling.expect(:post, nil) do |path, body:, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/authorize}, path
+        assert_equal 'application/json', headers['Content-Type']
+        body = HipsterHash[JSON.parse(body)]
         workflow = body[:localeWorkflows].first
         assert_equal 'a', body[:localeWorkflows][0][:targetLocaleId]
         assert_equal 'b', body[:localeWorkflows][0][:workflowUid]
@@ -244,7 +265,7 @@ describe Smartling::Jobs do
     end
 
     it 'does not require workflows' do
-      smartling.expect(:post, nil) do |path|
+      smartling.expect(:post, nil) do |path, headers:|
         assert_match %r{jobs-api/v3/projects/1/jobs/x/authorize}, path
       end
       smartling.authorize_job(project_id: 1, translation_job_uid: 'x')
