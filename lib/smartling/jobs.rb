@@ -38,6 +38,12 @@ module Smartling
       post(path, body: body.to_json, headers: headers)
     end
 
+    def delete_job(project_id: @project_id, translation_job_uid:)
+      path = "/jobs-api/v3/projects/#{project_id}/jobs/#{translation_job_uid}"
+:A
+      delete(path)
+    end
+
     def job(project_id: @project_id, translation_job_uid:)
       path = "/jobs-api/v3/projects/#{project_id}/jobs/#{translation_job_uid}"
       get(path)

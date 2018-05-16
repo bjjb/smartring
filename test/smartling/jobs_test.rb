@@ -62,6 +62,15 @@ describe Smartling::Jobs do
     end
   end
 
+  describe 'delete_job' do
+    it 'DELETES the right path' do
+      smartling.expect(:delete, nil) do |path|
+        assert_match %r{jobs-api/v3/projects/1/jobs/4}, path
+      end
+      smartling.delete_job(project_id: 1, translation_job_uid: 4)
+    end
+  end
+
   describe 'job' do
     it 'GETs the right endpoint' do
       smartling.expect(:get, nil) do |path|
