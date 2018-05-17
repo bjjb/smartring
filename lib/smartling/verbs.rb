@@ -9,7 +9,9 @@ module Smartling
           (options[:headers] ||= {})[:Authorization] = "Bearer #{token}"
           resp = self.class.send(verb, path, options).parsed_response
           return resp unless resp.is_a?(Hash)
-          HipsterHash[resp].response
+          hh = HipsterHash[resp]
+          return hh unless hh.key?(:response)
+          hh.response
         end
       end
     end
